@@ -59,23 +59,15 @@
 
         <cfreturn 1>
     </cffunction>
-<!---  
-    <cffunction  name="updateDetails" access="remote" returnType="struct" httpMethod="PUT" restPath="updateDetails">'
-        <cfargument  name="data" type="struct" restArgSource="body">
 
-        <cfset var testid=arguments.data.testid>
-        <cfset var title=arguments.data.title>
-        <cfset var description=arguments.data.description>
-
-
-        <cfquery name="updateData" datasource="dsn_addressbook">
-            update testapi 
-            set title=<cfqueryparam value="#title#" cfsqltype="cf_sql_varchar">
-            description=<cfqueryparam value="#descripiton#" cfsqltype="cf_sql_varchar">
-            where id=<cfqueryparam value="#testid#" cfsqltype="cf_sql_varchar">
-        </cfquery>
-       <cfreturn updateData>
-    </cffunction>--->
+<cffunction name="DeleteDetails" access="remote" returnType="any" httpMethod="delete" restPath="DeleteDetails/{deleteid}">
+    <cfargument name="deleteid" type="numeric" restArgSource="path">
+    <cfquery name="deletedata">
+        DELETE FROM testapi
+        WHERE id = <cfqueryparam value="#arguments.deleteid#" cfsqltype="cf_sql_integer">
+    </cfquery>
+    <cfreturn 1>
+</cffunction>
 
  
 
